@@ -1,7 +1,7 @@
-let user = sessionStorage.getItem("Name");
-let points = sessionStorage.getItem('Points');
-let time = sessionStorage.getItem('Time');
+let user_name = sessionStorage.getItem("name");
+let user_points = sessionStorage.getItem("points");
+let user_time = sessionStorage.getItem("time");
+document.querySelector("span.name").innerHTML = user_name;
+document.querySelector("span.points").innerHTML = user_points;
+document.querySelector("span.time_taken").innerHTML = user_time;
 
-document.querySelector(".name").innerHTML=user;
-document.querySelector(".point").innerHTML=points;
-document.querySelector(".time").innerHTML=time;
