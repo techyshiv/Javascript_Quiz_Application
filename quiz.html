@@ -1,36 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Quiz Page</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz App</title>
-    <link rel="stylesheet" href="dist/css/style.css">
-</head>
-
-<body>
+    <!-- style.css -->
+    <link rel="stylesheet" href="./dist/css/style.css" />
+  </head>
+  <body>
     <div class="wrapper">
-        <div class="quiz">
-            <div class="quiz_header">
-                <div class="quiz_user">
-                    <h4>Welcome!! <span class="name"></span></h4>
-                </div>
-                <div class="quiz_timer">
-                    <span class="time"></span>
-                </div>
-            </div>
-            <div class="quiz_body">
-                <div id="questions">
-                    
-                </div>
-                <button class="btn_next" onclick="Next()">Next Question</button>
-            </div>
+      <div class="quiz">
+        <div class="quiz_header">
+          <div class="quiz_user">
+            <h4>Welcome! <span class="name"></span></h4>
+          </div>
+          <div class="quiz_timer">
+            <span class="time">00:00</span>
+          </div>
         </div>
-    </div>
-    <!-- include js file -->
-    <script src="dist/js/index.js"></script>
-    <script src="dist/js/quiz.js"></script>
-    <script src="dist/js/timer.js"></script>
-</body>
+        <div class="quiz_body">
+          <div id="questions">
+          </div>
 
+          <button class="btn-next" onclick="next()">Next Question</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- site.js -->
+    <script src="dist/js/index.js"></script>
+
+      <!-- user info -->
+      <script src="dist/js/quiz.js"></script>
+
+     <!-- timer -->
+     <script src="dist/js/timer.js"></script>
+  </body>
 </html>

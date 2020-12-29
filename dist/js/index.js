@@ -1,110 +1,98 @@
-// Questions
-window.onload=function(){
-    Show(0);
-}
-let questions=[
+
+let questions = [
     {
-        id:1,
-        question:"What is the full form of RAM ?",
-        answer:"Random Access Memory",
-        options:[
-            "Random Access Memory",
-            "Randomly Access Memory",
-            "Read Access Memory",
-            "None of these"
-        ]
+      id: 1,
+      question: "What is the full form of RAM ?",
+      answer: "Random Access Memory",
+      options: [
+        "Random Access Memory",
+        "Randomely Access Memory",
+        "Run Aceapt Memory",
+        "None of these"
+      ]
     },
     {
-        id:2,
-        question:"What is the full form of CPU ?",
-        answer:"Central Processing Unit",
-        options:[
-            "Central Processing Unit",
-            "Randomly Access Memory",
-            "Read Access Memory",
-            "None of these"
-        ]
+      id: 2,
+      question: "What is the full form of CPU?",
+      answer: "Central Processing Unit",
+      options: [
+        "Central Program Unit",
+        "Central Processing Unit",
+        "Central Preload Unit",
+        "None of these"
+      ]
     },
     {
-        id:3,
-        question:"What is the full form of E-Mail ?",
-        answer:"Electronic Mail",
-        options:[
-            "Electronic Mail",
-            "Randomly Access Memory",
-            "Read Access Memory",
-            "None of these"
-        ]
-    },
-    {
-        id:4,
-        question:"What is the full form of IIT ?",
-        answer:"Indian Institute of Technology",
-        options:[
-            "Indian Institute of Technology",
-            "Randomly Access Memory",
-            "Read Access Memory",
-            "None of these"
-        ]
+      id: 3,
+      question: "What is the full form of E-mail",
+      answer: "Electronic Mail",
+      options: [
+        "Electronic Mail",
+        "Electric Mail",
+        "Engine Mail",
+        "None of these"
+      ]
     }
-]
-
-function SubmitForm(e){
-    e.preventDefault();
-    let name = document.forms["welcome_form"]["username"].value;
-    // Store Player name
-    sessionStorage.setItem("Name",name);
-    location.href="quiz.html";
-}
-
-let question_count=0;
-let quiz_point =0;
-function Next(){
+  ];
+  
+  let question_count = 0;
+  let points = 0;
+  
+  window.onload = function() {
+    show(question_count);
+  
+  };
+  
+  function next() {
+  
     let user_answer = document.querySelector("li.option.active").innerHTML;
-    console.log(user_answer);
-    // check answer by user
-    if(user_answer===questions[question_count].answer){
-        // alert("Right Anser");
-        quiz_point+=10;
-        sessionStorage.setItem('Points',quiz_point);
+    // check if the answer is right or wrong
+    if (user_answer == questions[question_count].answer) {
+      points += 10;
+      sessionStorage.setItem("points", points);
+    }else{
+      points-=1;
+    } 
+    // if the question is last then redirect to final page
+    if (question_count == questions.length - 1) {
+      sessionStorage.setItem("time",`${minutes} minutes and ${seconds} seconds`);
+      clearInterval(mytime);
+      location.href = "end.html";
     }
-    else{
-        // alert("Wrong answer");
-        quiz_point-=1;
-    }
-    if(question_count==questions.length-1){
-        sessionStorage.setItem("Time",`${minutes} minutes and ${seconds} seconds`);
-        clearInterval(myTime);
-        location.href="end.html";
-        return;
-    }
+    console.log(question_count);
+    console.log(points);
+  
     question_count++;
-    Show(question_count);
-}
-
-function Show(count){
+    show(question_count);
+  }
+  
+  function show(count) {
     let question = document.getElementById("questions");
-    question.innerHTML=`<h2> Q${count+1}. ${questions[count].question}</h2>
-    <ul class="option_group">
-        <li class="option">${questions[count].options[0]}</li>
-        <li class="option">${questions[count].options[1]}</li>
-        <li class="option">${questions[count].options[2]}</li>
-        <li class="option">${questions[count].options[3]}</li>
-    </ul>
+    let [first, second, third, fourth] = questions[count].options;
+  
+    question.innerHTML = `
+    <h2>Q${count + 1}. ${questions[count].question}</h2>
+     <ul class="option_group">
+    <li class="option">${first}</li>
+    <li class="option">${second}</li>
+    <li class="option">${third}</li>
+    <li class="option">${fourth}</li>
+  </ul> 
     `;
     toggleActive();
-}
-
-function toggleActive(){
+  }
+  
+  function toggleActive() {
     let option = document.querySelectorAll("li.option");
-    for(let i=0;i<option.length;i++){
-        option[i].onclick = function(){
-            for(let j=0;j<option.length;j++){
-                if(option[j].classList.contains("active")){
-                    option[j].classList.remove("active");
-                }
-            }
-            option[i].classList.add("active");
+    for (let i = 0; i < option.length; i++) {
+      option[i].onclick = function() {
+        for (let i = 0; i < option.length; i++) {
+          if (option[i].classList.contains("active")) {
+            option[i].classList.remove("active");
+          }
         }
+        option[i].classList.add("active");
+      };
     }
-}
+  }
+  
